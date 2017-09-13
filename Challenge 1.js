@@ -15,9 +15,13 @@
 // Learning objectives
 // This question gives you the chance to practice with strings, recursion, algorithm, compilers, automata, and loops. It’s also an opportunity to work on coding with better efficiency.
 //97-122 a-z, 48-57 0-9, 91[,93 ]
-main("aa2[x3[y]]bb",1,0);
+main("a[]b",1,0);
 function main(input, veces, index){
     var j = 0;
+    if(veces == 0)
+        for(j = index; j < input.length; j++)
+            if(isClosedBracket(input[j]))
+                return j;
     for (j = 0; j < veces; j++){
         var i = index;
         while(i < input.length){ 
@@ -33,6 +37,9 @@ function main(input, veces, index){
                     i++;
                     i = main(input, parseInt(cant), i);
                 }
+            }
+            else if (isOpenBracket(input[i])){
+                i = main(input, 0, ++i);
             }
             else if(isClosedBracket(input[i])){
                 if(j == veces - 1)
